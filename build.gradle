@@ -1,0 +1,38 @@
+// Establish version and status
+ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
+group = "org.anarres.jna.udev"
+
+buildscript {
+    apply from: file('gradle/buildscript.gradle'), to: buildscript 
+
+	repositories {
+		mavenLocal()
+	}
+
+	dependencies {
+		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.0-SNAPSHOT"
+	}
+}
+
+apply from: file('gradle/convention.gradle')
+apply from: file('gradle/github.gradle')
+apply from: file('gradle/nexus.gradle')
+apply from: file('gradle/check.gradle')
+apply from: file('gradle/license.gradle')
+
+apply plugin: 'org.anarres.jnaerator'
+
+dependencies {
+	testCompile "org.slf4j:slf4j-api:1.7.7"
+	testCompile 'com.google.guava:guava:18.0'
+}
+
+println "Task is " + jnaerator.getClass()
+
+jnaerator {
+	libraryName 'udev'
+	packageName 'org.anarres.jna.udev'
+	headerFiles "/usr/lib/xcb/xcb.h"
+}
+
+println "LibraryName is " + jnaerator.getLibraryName()
