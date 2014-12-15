@@ -23,7 +23,7 @@
 	}
 
 	tasks.withType(JavaCompile) {
-		options.incremental = true
+		// options.incremental = true
 	}
 
 	test {

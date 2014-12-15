@@ -6,11 +6,13 @@ buildscript {
     apply from: file('gradle/buildscript.gradle'), to: buildscript 
 
 	repositories {
+		// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 		mavenLocal()
 	}
 
 	dependencies {
 		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.0-SNAPSHOT"
+		classpath "com.nativelibs4java:jnaerator:0.11"
 	}
 }
 
@@ -23,16 +25,19 @@ apply from: file('gradle/license.gradle')
 apply plugin: 'org.anarres.jnaerator'
 
 dependencies {
+	compile 'com.nativelibs4java:jnaerator-runtime:0.11'
+	// If JNA
+	compile 'net.java.dev.jna:jna:4.1.0'
+	// If BridJ
+	// compile 'com.nativelibs4java:bridj:0.6.2'
+
 	testCompile "org.slf4j:slf4j-api:1.7.7"
 	testCompile 'com.google.guava:guava:18.0'
 }
 
-println "Task is " + jnaerator.getClass()
-
 jnaerator {
 	libraryName 'udev'
 	packageName 'org.anarres.jna.udev'
-	headerFiles "/usr/lib/xcb/xcb.h"
+	headerFiles "/usr/include/libudev.h"
+	// runtimeMode "BridJ"
 }
-
-println "LibraryName is " + jnaerator.getLibraryName()
