@@ -1,11 +1,15 @@
+// GRADLE-2087 workaround, perform after java plugin
+status = project.hasProperty('preferredStatus')?project.preferredStatus:(version.contains('SNAPSHOT')?'snapshot':'release')
+
+subprojects {
 	apply plugin: 'java' // Plugin as major conventions
 	apply plugin: 'errorprone'
 	apply plugin: 'info'
 
 	sourceCompatibility = 1.6
 
-	// GRADLE-2087 workaround, perform after java plugin
-	status = project.hasProperty('preferredStatus')?project.preferredStatus:(version.contains('SNAPSHOT')?'snapshot':'release')
+	// Restore status after Java plugin
+	status = rootProject.status
 
 	repositories {
 		// mavenLocal()
@@ -51,6 +55,7 @@
 			}
 		}
 	}
+}
 
 // Generate wrapper, which is distributed as part of source to alleviate the need of installing gradle
 wrapper {
