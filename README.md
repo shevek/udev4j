@@ -1,4 +1,18 @@
-Experimental JNA libudev bindings
-=================================
+LibUdev for Java
+================
 
-Do not use this project yet.
+Usage
+=====
+
+```
+Udev udev = new Udev();
+try {
+	for (String syspath : udev.newEnumeration().withMatchSubsystem("block")) {
+		UdevDevice device = udev.getDeviceBySyspath(syspath);
+		...
+	}
+} finally {
+	udev.close();
+}
+```
+

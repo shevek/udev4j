@@ -15,7 +15,7 @@ subprojects {
 		// Closure to configure all the POM with extra info, common to all projects
 		project {
 			name "${project.name}"
-			description "A multithreaded implementation of GZIPOutputStream and GZIPInputStream"
+			description "LibUdev for Java using JNA"
 			developers {
 				developer {
 					id 'shevek'
@@ -25,8 +25,8 @@ subprojects {
 			}
 			licenses {
 				license {
-					name 'The Apache Software License, Version 2.0'
-					url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+					name 'The GNU Lesser General Public License, Version 3.0'
+					url 'https://www.gnu.org/licenses/lgpl.html'
 					distribution 'repo'
 				}
 			}

@@ -31,13 +31,14 @@ dependencies {
 	// If BridJ
 	// compile 'com.nativelibs4java:bridj:0.6.2'
 
+	compile 'com.google.guava:guava:18.0'
+
 	testCompile "org.slf4j:slf4j-api:1.7.7"
-	testCompile 'com.google.guava:guava:18.0'
 }
 
 jnaerator {
 	libraryName 'udev'
-	packageName 'org.anarres.jna.udev'
+	packageName 'org.anarres.udev.generated'
 	headerFiles "/usr/include/libudev.h"
 	// runtimeMode "BridJ"
 }
