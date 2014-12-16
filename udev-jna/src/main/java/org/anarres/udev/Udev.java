@@ -4,12 +4,8 @@ import java.io.Closeable;
 import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
+ * See http://www.freedesktop.org/software/systemd/libudev/
  * @author shevek
  */
 public class Udev implements Closeable {

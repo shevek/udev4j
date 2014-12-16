@@ -6,6 +6,7 @@ package org.anarres.udev;
 
 import com.google.common.base.Objects;
 import java.util.Map;
+import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
 
@@ -24,6 +25,7 @@ public class UdevDevice {
     private final String sysname;
     private final String sysnum;
     private final String syspath;
+    private final String parentSyspath;
     private final boolean initialized;
     private final long sequenceNumber;
     private final long usecSinceInitialized;
@@ -51,6 +53,13 @@ public class UdevDevice {
         this.properties = new UdevEntryIterator(library, library.udev_device_get_properties_list_entry(device)).toMap();
         this.sysattrs = new UdevEntryIterator(library, library.udev_device_get_sysattr_list_entry(device)).toMap();
         this.tags = new UdevEntryIterator(library, library.udev_device_get_tags_list_entry(device)).toMap();
+
+        // We do not own the ref to this parent device.
+        UdevLibrary.udev_device parent = library.udev_device_get_parent(device);
+        if (parent != null)
+            this.parentSyspath = library.udev_device_get_syspath(parent);
+        else
+            this.parentSyspath = null;
     }
 
     public String getAction() {
@@ -87,6 +96,11 @@ public class UdevDevice {
 
     public String getSyspath() {
         return syspath;
+    }
+
+    @CheckForNull
+    public String getParentSyspath() {
+        return parentSyspath;
     }
 
     public boolean isInitialized() {
@@ -128,6 +142,7 @@ public class UdevDevice {
                 .add("sysname", sysname)
                 .add("sysnum", sysnum)
                 .add("syspath", syspath)
+                .add("parentSyspath", parentSyspath)
                 .add("initialized", initialized)
                 .add("sequenceNumber", sequenceNumber)
                 .add("usecSinceInitialized", usecSinceInitialized)
