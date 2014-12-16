@@ -1,17 +1,17 @@
 // Establish version and status
 ext.githubProjectName = rootProject.name // Change if github project name is not the same as the root project's name
-group = "org.anarres.udev"
 
 buildscript {
     apply from: file('gradle/buildscript.gradle'), to: buildscript 
 
 	repositories {
 		// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
-		mavenLocal()
+		jcenter()
+		// mavenLocal()
 	}
 
 	dependencies {
-		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.0-SNAPSHOT"
+		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.0"
 		classpath "com.nativelibs4java:jnaerator:0.11"
 	}
 }
@@ -21,6 +21,10 @@ apply from: file('gradle/github.gradle')
 apply from: file('gradle/nexus.gradle')
 apply from: file('gradle/check.gradle')
 apply from: file('gradle/license.gradle')
+
+subprojects {
+	group = "org.anarres.udev"
+}
 
 project(':udev-jna') {
 	dependencies {

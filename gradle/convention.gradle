@@ -30,6 +30,12 @@ subprojects {
 		// options.incremental = true
 	}
 
+	javadoc {
+		options.links "http://docs.oracle.com/javase/7/docs/api/",
+			"http://docs.oracle.com/javaee/7/api/",
+			"http://docs.guava-libraries.googlecode.com/git/javadoc/"
+	}
+
 	test {
 		systemProperty 'org.apache.commons.logging.Log', 'org.apache.commons.logging.impl.SimpleLog'
 		systemProperty 'org.apache.commons.logging.simplelog.defaultlog', 'debug'
@@ -56,6 +62,9 @@ subprojects {
 		}
 	}
 }
+
+apply plugin: 'build-announcements'
+apply plugin: 'build-dashboard'
 
 // Generate wrapper, which is distributed as part of source to alleviate the need of installing gradle
 wrapper {
