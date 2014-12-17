@@ -4,7 +4,11 @@
  */
 package org.anarres.udev;
 
+import com.google.common.base.Charsets;
 import com.google.common.base.Objects;
+import com.google.common.io.Files;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
@@ -81,6 +85,7 @@ public class UdevDevice {
         return devpath;
     }
 
+    @CheckForNull
     public String getDevtype() {
         return devtype;
     }
@@ -142,6 +147,12 @@ public class UdevDevice {
         return properties.get(name);
     }
 
+    /** A typographically safer version of {@link #getProperty(String)}. */
+    @CheckForNull
+    public String getProperty(@Nonnull UdevProperty name) {
+        return properties.get(name.name());
+    }
+
     /**
      * Returns the list of sysattr names.
      * A sysattr is an exposed file in /sys/{syspath}/... which returns a
@@ -150,6 +161,13 @@ public class UdevDevice {
     @Nonnull
     public List<? extends String> getSysattrs() {
         return sysattrs;
+    }
+
+    @CheckForNull
+    public String getSysattr(@Nonnull String name)
+            throws IOException {
+        File file = new File(getSyspath(), name);
+        return Files.toString(file, Charsets.ISO_8859_1);
     }
 
     @Nonnull
@@ -178,6 +196,7 @@ public class UdevDevice {
                 .add("initialized", isInitialized())
                 .add("sequenceNumber", getSequenceNumber())
                 .add("usecSinceInitialized", getUsecSinceInitialized())
+                .add("devlinks", getDevlinks())
                 .add("properties", getProperties())
                 .add("sysattrs", getSysattrs())
                 .add("tags", getTags())

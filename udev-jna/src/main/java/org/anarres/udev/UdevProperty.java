@@ -18,6 +18,17 @@ public enum UdevProperty {
     DEVPATH,
     DEVTYPE,
     DMI_VENDOR,
+    DM_LV_NAME,
+    DM_NAME,
+    DM_STATE,
+    DM_SUSPENDED,
+    DM_TABLE_STATE,
+    DM_TYPE,
+    DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG,
+    DM_UDEV_PRIMARY_SOURCE_FLAG,
+    DM_UDEV_RULES,
+    DM_UUID,
+    DM_VG_NAME,
     DRIVER,
     EV,
     ID_ATA,
@@ -25,12 +36,15 @@ public enum UdevProperty {
     ID_ATA_FEATURE_SET_APM,
     ID_ATA_FEATURE_SET_APM_CURRENT_VALUE,
     ID_ATA_FEATURE_SET_APM_ENABLED,
+    ID_ATA_FEATURE_SET_HPA,
+    ID_ATA_FEATURE_SET_HPA_ENABLED,
     ID_ATA_FEATURE_SET_PM,
     ID_ATA_FEATURE_SET_PM_ENABLED,
     ID_ATA_FEATURE_SET_SECURITY,
     ID_ATA_FEATURE_SET_SECURITY_ENABLED,
     ID_ATA_FEATURE_SET_SECURITY_ENHANCED_ERASE_UNIT_MIN,
     ID_ATA_FEATURE_SET_SECURITY_ERASE_UNIT_MIN,
+    ID_ATA_FEATURE_SET_SECURITY_FROZEN,
     ID_ATA_FEATURE_SET_SMART,
     ID_ATA_FEATURE_SET_SMART_ENABLED,
     ID_ATA_ROTATION_RATE_RPM,
@@ -68,6 +82,9 @@ public enum UdevProperty {
     ID_PART_TABLE_TYPE,
     ID_PATH,
     ID_PATH_TAG,
+    ID_PCI_CLASS_FROM_DATABASE,
+    ID_PCI_INTERFACE_FROM_DATABASE,
+    ID_PCI_SUBCLASS_FROM_DATABASE,
     ID_REVISION,
     ID_SCSI_COMPAT,
     ID_SERIAL,
@@ -159,7 +176,8 @@ public enum UdevProperty {
      *
      * @author shevek
      */
-    public static enum DEVTYPE {
+    // udevadm info -q all -e -a | grep DEVTYPE
+    public static enum DevType {
 
         bridge,
         disk,
@@ -174,7 +192,5 @@ public enum UdevProperty {
         usb_device,
         usb_interface,
         wlan,
-
     }
-
 }
