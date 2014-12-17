@@ -15,13 +15,23 @@ Usage
 ```
 Udev udev = new Udev();
 try {
-	for (String syspath : udev.newEnumeration().withMatchSubsystem("block")) {
+	for (String syspath : udev.newEnumeration()
+			.withMatchSubsystem(UdevSubsystem.block)) {
 		UdevDevice device = udev.getDeviceBySyspath(syspath);
 		...
+		/* ... = */ device.getProperty(UdevProperty.ID_USB_DRIVER);
+		/* ... = */ device.getProperty("CUSTOM_PROPERTY");
 	}
 } finally {
 	udev.close();
 }
+```
+
+In Java 7, do not forget to use:
+```
+	try (Udev udev = new Udev()) {
+		...
+	}
 ```
 
 Documentation
@@ -30,8 +40,11 @@ Documentation
 The [JavaDoc API](http://shevek.github.io/udev4j/docs/javadoc/)
 is available.
 
-Building
-========
+Requirements
+============
+
+This package requirs Java 1.6 or greater, and may be installed from
+Maven Central as `org.anarres.udev:udev-jna:<version>`.
 
 This package requires libudev-dev to build. The runtime does not
 require it.

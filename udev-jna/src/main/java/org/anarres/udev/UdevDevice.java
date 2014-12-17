@@ -81,6 +81,7 @@ public class UdevDevice {
         return devnode;
     }
 
+    @CheckForNull
     public String getDevpath() {
         return devpath;
     }
