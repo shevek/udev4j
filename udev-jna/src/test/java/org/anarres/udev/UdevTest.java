@@ -25,8 +25,11 @@ public class UdevTest {
         try {
             assertNotNull(udev);
             for (String syspath : udev.newEnumeration().withMatchSubsystem("block")) {
-                UdevDevice device = udev.getDeviceBySyspath(syspath);
-                LOG.info("Device: " + syspath + " -> " + device);
+                do {
+                    UdevDevice device = udev.getDeviceBySyspath(syspath);
+                    LOG.info("Device: " + syspath + " -> " + device);
+                    syspath = device.getParentSyspath();
+                } while (syspath != null);
             }
         } finally {
             udev.close();

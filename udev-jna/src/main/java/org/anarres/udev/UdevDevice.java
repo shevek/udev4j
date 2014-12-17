@@ -5,12 +5,17 @@
 package org.anarres.udev;
 
 import com.google.common.base.Objects;
+import java.util.List;
 import java.util.Map;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
 
 /**
+ * A device.
+ *
+ * This is a pure value-object, and remains valid after the associated
+ * {@link Udev} object is closed.
  *
  * @author shevek
  */
@@ -30,7 +35,7 @@ public class UdevDevice {
     private final long sequenceNumber;
     private final long usecSinceInitialized;
     private final Map<String, String> properties;
-    private final Map<String, String> sysattrs;
+    private final List<String> sysattrs;
     private final Map<String, String> tags;
 
     /* pp */ UdevDevice(Udev udev, UdevLibrary.udev_device device) {
@@ -51,7 +56,7 @@ public class UdevDevice {
         this.usecSinceInitialized = library.udev_device_get_usec_since_initialized(device).longValue();
 
         this.properties = new UdevEntryIterator(library, library.udev_device_get_properties_list_entry(device)).toMap();
-        this.sysattrs = new UdevEntryIterator(library, library.udev_device_get_sysattr_list_entry(device)).toMap();
+        this.sysattrs = new UdevValueIterator(library, library.udev_device_get_sysattr_list_entry(device)).toList();
         this.tags = new UdevEntryIterator(library, library.udev_device_get_tags_list_entry(device)).toMap();
 
         // We do not own the ref to this parent device.
@@ -120,8 +125,18 @@ public class UdevDevice {
         return properties;
     }
 
+    @CheckForNull
+    public String getProperty(@Nonnull String name) {
+        return properties.get(name);
+    }
+
+    /**
+     * Returns the list of sysattr names.
+     * A sysattr is an exposed file in /sys/{syspath}/... which returns a
+     * kernel-side value.
+     */
     @Nonnull
-    public Map<? extends String, ? extends String> getSysattrs() {
+    public List<? extends String> getSysattrs() {
         return sysattrs;
     }
 
@@ -130,25 +145,30 @@ public class UdevDevice {
         return tags;
     }
 
+    @CheckForNull
+    public String getTag(@Nonnull String name) {
+        return tags.get(name);
+    }
+
     @Override
     public String toString() {
         return Objects.toStringHelper(this)
-                .add("action", action)
-                .add("devnode", devnode)
-                .add("devpath", devpath)
-                .add("devtype", devtype)
-                .add("driver", driver)
-                .add("subsystem", subsystem)
-                .add("sysname", sysname)
-                .add("sysnum", sysnum)
-                .add("syspath", syspath)
-                .add("parentSyspath", parentSyspath)
-                .add("initialized", initialized)
-                .add("sequenceNumber", sequenceNumber)
-                .add("usecSinceInitialized", usecSinceInitialized)
-                .add("properties", properties)
-                .add("sysattrs", sysattrs)
-                .add("tags", tags)
+                .add("action", getAction())
+                .add("devnode", getDevnode())
+                .add("devpath", getDevpath())
+                .add("devtype", getDevtype())
+                .add("driver", getDriver())
+                .add("subsystem", getSubsystem())
+                .add("sysname", getSysname())
+                .add("sysnum", getSysnum())
+                .add("syspath", getSyspath())
+                .add("parentSyspath", getParentSyspath())
+                .add("initialized", isInitialized())
+                .add("sequenceNumber", getSequenceNumber())
+                .add("usecSinceInitialized", getUsecSinceInitialized())
+                .add("properties", getProperties())
+                .add("sysattrs", getSysattrs())
+                .add("tags", getTags())
                 .toString();
     }
 }

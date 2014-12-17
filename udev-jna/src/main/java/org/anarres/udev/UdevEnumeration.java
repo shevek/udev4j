@@ -11,6 +11,13 @@ import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
 
 /**
+ * An enumeration builder.
+ *
+ * The enumeration is not executed until {@link #toList()} or
+ * {@link #iterator()} is called. After iteration, more conditions may be
+ * added and either method may be called again.
+ *
+ * This object is NOT valid after the associated {@link Udev} object is closed.
  *
  * @author shevek
  */

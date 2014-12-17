@@ -4,7 +4,7 @@
  */
 package org.anarres.udev;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
@@ -28,7 +28,7 @@ import org.anarres.udev.generated.UdevLibrary;
 
     @Nonnull
     public Map<String, String> toMap() {
-        Map<String, String> out = new HashMap<String, String>();
+        Map<String, String> out = new LinkedHashMap<String, String>();
         while (hasNext()) {
             UdevListEntry e = next();
             out.put(e.getKey(), e.getValue());

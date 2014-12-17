@@ -5,6 +5,10 @@ import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
 
 /**
+ * A Udev handle.
+ *
+ * This object MUST be closed after use or a leak in the native heap will result.
+ *
  * See http://www.freedesktop.org/software/systemd/libudev/
  * @author shevek
  */
@@ -32,13 +36,18 @@ public class Udev implements Closeable {
         return udev;
     }
 
+    /**
+     * Enumerates udev devices.
+     *
+     * The returned object is a builder pattern and is reusable.
+     */
     @Nonnull
     public UdevEnumeration newEnumeration() {
         return new UdevEnumeration(this);
     }
 
     @Nonnull
-    public UdevDevice getDeviceBySyspath(String syspath) {
+    public UdevDevice getDeviceBySyspath(@Nonnull String syspath) {
         UdevLibrary.udev_device device = library.udev_device_new_from_syspath(getHandle(), syspath);
         try {
             return new UdevDevice(this, device);
@@ -48,7 +57,7 @@ public class Udev implements Closeable {
     }
 
     @Nonnull
-    public UdevDevice getDeviceBySubsystemSysname(String subsystem, String sysname) {
+    public UdevDevice getDeviceBySubsystemSysname(@Nonnull String subsystem, @Nonnull String sysname) {
         UdevLibrary.udev_device device = library.udev_device_new_from_subsystem_sysname(getHandle(), subsystem, sysname);
         try {
             return new UdevDevice(this, device);
