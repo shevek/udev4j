@@ -34,6 +34,7 @@ public class UdevDevice {
     private final boolean initialized;
     private final long sequenceNumber;
     private final long usecSinceInitialized;
+    private final List<String> devlinks;
     private final Map<String, String> properties;
     private final List<String> sysattrs;
     private final Map<String, String> tags;
@@ -55,6 +56,7 @@ public class UdevDevice {
         this.sequenceNumber = library.udev_device_get_seqnum(device).longValue();
         this.usecSinceInitialized = library.udev_device_get_usec_since_initialized(device).longValue();
 
+        this.devlinks = new UdevValueIterator(library, library.udev_device_get_devlinks_list_entry(device)).toList();
         this.properties = new UdevEntryIterator(library, library.udev_device_get_properties_list_entry(device)).toMap();
         this.sysattrs = new UdevValueIterator(library, library.udev_device_get_sysattr_list_entry(device)).toList();
         this.tags = new UdevEntryIterator(library, library.udev_device_get_tags_list_entry(device)).toMap();
@@ -118,6 +120,16 @@ public class UdevDevice {
 
     public long getUsecSinceInitialized() {
         return usecSinceInitialized;
+    }
+
+    /**
+     * Returns a list of symlinks in /dev established for this device.
+     *
+     * http://www.freedesktop.org/software/systemd/libudev/libudev-udev-device.html#udev-device-get-devlinks-list-entry
+     */
+    @Nonnull
+    public List<String> getDevlinks() {
+        return devlinks;
     }
 
     @Nonnull

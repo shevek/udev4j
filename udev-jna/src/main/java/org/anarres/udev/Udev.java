@@ -5,7 +5,7 @@ import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
 
 /**
- * A Udev handle.
+ * A Udev handle - start here.
  *
  * This object MUST be closed after use or a leak in the native heap will result.
  *

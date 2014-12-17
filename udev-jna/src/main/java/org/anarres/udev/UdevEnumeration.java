@@ -50,7 +50,6 @@ public class UdevEnumeration implements Iterable<String> {
         return this;
     }
 
-    // property subsystem sysattr sysname tag
     @Nonnull
     public UdevEnumeration withMatchProperty(final String name, final String value) {
         return withMatch(new Match() {
@@ -61,6 +60,12 @@ public class UdevEnumeration implements Iterable<String> {
         });
     }
 
+    /** A typographically safer version of {@link #withMatchProperty(String, String)}. */
+    @Nonnull
+    public UdevEnumeration withMatchProperty(final UdevProperty name, final String value) {
+        return withMatchProperty(name.name(), value);
+    }
+
     @Nonnull
     public UdevEnumeration withMatchSubsystem(final String name) {
         return withMatch(new Match() {
@@ -69,6 +74,12 @@ public class UdevEnumeration implements Iterable<String> {
                 library.udev_enumerate_add_match_subsystem(enumerate, name);
             }
         });
+    }
+
+    /** A typographically safer version of {@link #withMatchSubsystem(String)}. */
+    @Nonnull
+    public UdevEnumeration withMatchSubsystem(final UdevSubsystem name) {
+        return withMatchSubsystem(name.name());
     }
 
     @Nonnull
@@ -109,6 +120,12 @@ public class UdevEnumeration implements Iterable<String> {
                 library.udev_enumerate_add_nomatch_subsystem(enumerate, name);
             }
         });
+    }
+
+    /** A typographically safer version of {@link #withNoMatchSubsystem(String)}. */
+    @Nonnull
+    public UdevEnumeration withNoMatchSubsystem(final UdevSubsystem name) {
+        return withNoMatchSubsystem(name.name());
     }
 
     @Nonnull
