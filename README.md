@@ -30,3 +30,9 @@ Documentation
 The [JavaDoc API](http://shevek.github.io/udev4j/docs/javadoc/)
 is available.
 
+Building
+========
+
+This package requires libudev-dev to build. The runtime does not
+require it.
+
