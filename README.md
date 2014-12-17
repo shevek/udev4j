@@ -24,3 +24,9 @@ try {
 }
 ```
 
+Documentation
+=============
+
+The [JavaDoc API](http://shevek.github.io/udev4j/docs/javadoc/)
+is available.
+
