@@ -70,11 +70,11 @@
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">private</span> State state;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;27</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsCovered">&nbsp;1796</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> UdevIterator(UdevLibrary library, UdevLibrary.udev_list_entry entry) {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsCovered">&nbsp;1796</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.library = library;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;30</td>  <td class="nbHitsCovered">&nbsp;1796</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.entry = entry;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;31</td>  <td class="nbHitsCovered">&nbsp;1796</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.state = State.READY;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;32</td>  <td class="nbHitsCovered">&nbsp;1796</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;28</td>  <td class="nbHitsCovered">&nbsp;2394</td>  <td class="src"><pre class="src">&nbsp;    <span class="keyword">protected</span> UdevIterator(UdevLibrary library, UdevLibrary.udev_list_entry entry) {</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;29</td>  <td class="nbHitsCovered">&nbsp;2394</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.library = library;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;30</td>  <td class="nbHitsCovered">&nbsp;2394</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.entry = entry;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;31</td>  <td class="nbHitsCovered">&nbsp;2394</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">this</span>.state = State.READY;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;32</td>  <td class="nbHitsCovered">&nbsp;2394</td>  <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;33</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;34</td>  <td class="nbHits">&nbsp;</td>
@@ -88,13 +88,13 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;39</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> <span class="keyword">boolean</span> hasNext() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;40</td>  <td class="nbHitsCovered"><a title="Line 40: Conditional coverage 100% (2/2).">&nbsp;11704</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 40: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>)</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;41</td>  <td class="nbHitsCovered">&nbsp;588</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">false</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;42</td>  <td class="nbHitsCovered"><a title="Line 42: Conditional coverage 100% (2/2).">&nbsp;11116</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 42: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (state == State.READY)</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;43</td>  <td class="nbHitsCovered">&nbsp;1208</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">true</span>;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;44</td>  <td class="nbHitsCovered">&nbsp;9908</td>  <td class="src"><pre class="src">&nbsp;        entry = library.udev_list_entry_get_next(entry);</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;45</td>  <td class="nbHitsCovered">&nbsp;9908</td>  <td class="src"><pre class="src">&nbsp;        state = State.READY;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;46</td>  <td class="nbHitsCovered"><a title="Line 46: Conditional coverage 100% (2/2).">&nbsp;9908</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 46: Conditional coverage 100% (2/2).">        <span class="keyword">return</span> entry != <span class="keyword">null</span>;</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;40</td>  <td class="nbHitsCovered"><a title="Line 40: Conditional coverage 100% (2/2).">&nbsp;12375</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 40: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>)</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;41</td>  <td class="nbHitsCovered">&nbsp;1159</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">false</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;42</td>  <td class="nbHitsCovered"><a title="Line 42: Conditional coverage 100% (2/2).">&nbsp;11216</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 42: Conditional coverage 100% (2/2).">        <span class="keyword">if</span> (state == State.READY)</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;43</td>  <td class="nbHitsCovered">&nbsp;1235</td>  <td class="src"><pre class="src">&nbsp;            <span class="keyword">return</span> <span class="keyword">true</span>;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;44</td>  <td class="nbHitsCovered">&nbsp;9981</td>  <td class="src"><pre class="src">&nbsp;        entry = library.udev_list_entry_get_next(entry);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;45</td>  <td class="nbHitsCovered">&nbsp;9981</td>  <td class="src"><pre class="src">&nbsp;        state = State.READY;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;46</td>  <td class="nbHitsCovered"><a title="Line 46: Conditional coverage 100% (2/2).">&nbsp;9981</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 46: Conditional coverage 100% (2/2).">        <span class="keyword">return</span> entry != <span class="keyword">null</span>;</a></pre></td></tr>
 <tr>  <td class="numLine">&nbsp;47</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;48</td>  <td class="nbHits">&nbsp;</td>
@@ -107,10 +107,10 @@
   <td class="src"><pre class="src">&nbsp;    @Override</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;52</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> T next() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;53</td>  <td class="nbHitsUncovered"><a title="Line 53: Conditional coverage 50% (1/2).">&nbsp;9908</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 53: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>)</a></span></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;53</td>  <td class="nbHitsUncovered"><a title="Line 53: Conditional coverage 50% (1/2).">&nbsp;9981</a></td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;<a title="Line 53: Conditional coverage 50% (1/2).">        <span class="keyword">if</span> (entry == <span class="keyword">null</span>)</a></span></pre></td></tr>
 <tr>  <td class="numLineCover">&nbsp;54</td>  <td class="nbHitsUncovered">&nbsp;0</td>  <td class="src"><pre class="src"><span class="srcUncovered">&nbsp;            <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;55</td>  <td class="nbHitsCovered">&nbsp;9908</td>  <td class="src"><pre class="src">&nbsp;        state = State.WAITING;</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;56</td>  <td class="nbHitsCovered">&nbsp;9908</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toEntry(library, entry);</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;55</td>  <td class="nbHitsCovered">&nbsp;9981</td>  <td class="src"><pre class="src">&nbsp;        state = State.WAITING;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;56</td>  <td class="nbHitsCovered">&nbsp;9981</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> toEntry(library, entry);</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;57</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;58</td>  <td class="nbHits">&nbsp;</td>
@@ -128,16 +128,16 @@
   <td class="src"><pre class="src">&nbsp;    @Nonnull</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;65</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    <span class="keyword">public</span> List&lt;T&gt; toList() {</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsCovered">&nbsp;600</td>  <td class="src"><pre class="src">&nbsp;        List&lt;T&gt; out = <span class="keyword">new</span> ArrayList&lt;T&gt;();</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered"><a title="Line 67: Conditional coverage 100% (2/2).">&nbsp;5878</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 67: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (hasNext())</a></pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;5278</td>  <td class="src"><pre class="src">&nbsp;            out.add(next());</pre></td></tr>
-<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;600</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> out;</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;66</td>  <td class="nbHitsCovered">&nbsp;1198</td>  <td class="src"><pre class="src">&nbsp;        List&lt;T&gt; out = <span class="keyword">new</span> ArrayList&lt;T&gt;();</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;67</td>  <td class="nbHitsCovered"><a title="Line 67: Conditional coverage 100% (2/2).">&nbsp;6549</a></td>  <td class="src"><pre class="src">&nbsp;<a title="Line 67: Conditional coverage 100% (2/2).">        <span class="keyword">while</span> (hasNext())</a></pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;68</td>  <td class="nbHitsCovered">&nbsp;5351</td>  <td class="src"><pre class="src">&nbsp;            out.add(next());</pre></td></tr>
+<tr>  <td class="numLineCover">&nbsp;69</td>  <td class="nbHitsCovered">&nbsp;1198</td>  <td class="src"><pre class="src">&nbsp;        <span class="keyword">return</span> out;</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;70</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;    }</pre></td></tr>
 <tr>  <td class="numLine">&nbsp;71</td>  <td class="nbHits">&nbsp;</td>
   <td class="src"><pre class="src">&nbsp;}</pre></td></tr>
 </table>
 
-<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 12/17/14 10:54 AM.</div>
+<div class="footer">Report generated by <a href="http://cobertura.sourceforge.net/" target="_top">Cobertura</a> 2.0.3 on 12/17/14 11:42 AM.</div>
 </body>
 </html>
