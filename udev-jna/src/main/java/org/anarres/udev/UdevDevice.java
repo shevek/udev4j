@@ -6,11 +6,11 @@ package org.anarres.udev;
 
 import com.google.common.base.Charsets;
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.io.Files;
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
@@ -38,10 +38,10 @@ public class UdevDevice {
     private final boolean initialized;
     private final long sequenceNumber;
     private final long usecSinceInitialized;
-    private final List<String> devlinks;
-    private final Map<String, String> properties;
-    private final List<String> sysattrs;
-    private final Map<String, String> tags;
+    private final ImmutableList<String> devlinks;
+    private final ImmutableMap<String, String> properties;
+    private final ImmutableList<String> sysattrs;
+    private final ImmutableList<String> tags;
 
     /* pp */ UdevDevice(Udev udev, UdevLibrary.udev_device device) {
         UdevLibrary library = udev.getLibrary();
@@ -63,7 +63,7 @@ public class UdevDevice {
         this.devlinks = new UdevValueIterator(library, library.udev_device_get_devlinks_list_entry(device)).toList();
         this.properties = new UdevEntryIterator(library, library.udev_device_get_properties_list_entry(device)).toMap();
         this.sysattrs = new UdevValueIterator(library, library.udev_device_get_sysattr_list_entry(device)).toList();
-        this.tags = new UdevEntryIterator(library, library.udev_device_get_tags_list_entry(device)).toMap();
+        this.tags = new UdevValueIterator(library, library.udev_device_get_tags_list_entry(device)).toList();
 
         // We do not own the ref to this parent device.
         UdevLibrary.udev_device parent = library.udev_device_get_parent(device);
@@ -133,12 +133,12 @@ public class UdevDevice {
      * http://www.freedesktop.org/software/systemd/libudev/libudev-udev-device.html#udev-device-get-devlinks-list-entry
      */
     @Nonnull
-    public List<String> getDevlinks() {
+    public ImmutableList<String> getDevlinks() {
         return devlinks;
     }
 
     @Nonnull
-    public Map<? extends String, ? extends String> getProperties() {
+    public ImmutableMap<? extends String, ? extends String> getProperties() {
         return properties;
     }
 
@@ -159,7 +159,7 @@ public class UdevDevice {
      * kernel-side value.
      */
     @Nonnull
-    public List<? extends String> getSysattrs() {
+    public ImmutableList<? extends String> getSysattrNames() {
         return sysattrs;
     }
 
@@ -171,13 +171,13 @@ public class UdevDevice {
     }
 
     @Nonnull
-    public Map<? extends String, ? extends String> getTags() {
+    public ImmutableList<? extends String> getTags() {
         return tags;
     }
 
     @CheckForNull
-    public String getTag(@Nonnull String name) {
-        return tags.get(name);
+    public boolean hasTag(@Nonnull String name) {
+        return tags.contains(name);
     }
 
     @Override
@@ -198,7 +198,7 @@ public class UdevDevice {
                 .add("usecSinceInitialized", getUsecSinceInitialized())
                 .add("devlinks", getDevlinks())
                 .add("properties", getProperties())
-                .add("sysattrs", getSysattrs())
+                .add("sysattrs", getSysattrNames())
                 .add("tags", getTags())
                 .toString();
     }

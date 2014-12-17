@@ -2,6 +2,7 @@ package org.anarres.udev;
 
 import java.io.Closeable;
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.NotThreadSafe;
 import org.anarres.udev.generated.UdevLibrary;
 
 /**
@@ -12,25 +13,35 @@ import org.anarres.udev.generated.UdevLibrary;
  * See http://www.freedesktop.org/software/systemd/libudev/
  * @author shevek
  */
+@NotThreadSafe
 public class Udev implements Closeable {
 
     private final UdevLibrary library;
-    private final UdevLibrary.udev udev;
+    private UdevLibrary.udev udev;
 
-    public Udev(UdevLibrary library) {
+    public Udev(@Nonnull UdevLibrary library) {
         this.library = library;
         this.udev = library.udev_new();
     }
 
+    /** You want this constructor. */
     public Udev() {
         this(UdevLibrary.INSTANCE);
     }
 
+    /**
+     * Returns the underlying native library dev handle.
+     * You probably don't want this.
+     */
     @Nonnull
     public UdevLibrary getLibrary() {
         return library;
     }
 
+    /**
+     * Returns the underlying native udev handle.
+     * You probably don't want this.
+     */
     @Nonnull
     public UdevLibrary.udev getHandle() {
         return udev;
@@ -66,8 +77,14 @@ public class Udev implements Closeable {
         }
     }
 
+    /**
+     * Closes this Udev object and releases all associated native resources.
+     * Once this object is closed, all associated {@link UdevEnumeration}
+     * objects become invalid, but {@link UdevDevice} objects may still be used.
+     */
     @Override
     public void close() {
         library.udev_unref(udev);
+        udev = null;
     }
 }

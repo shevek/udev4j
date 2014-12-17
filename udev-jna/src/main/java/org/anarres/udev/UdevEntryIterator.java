@@ -4,6 +4,8 @@
  */
 package org.anarres.udev;
 
+import com.google.common.collect.ImmutableListMultimap;
+import com.google.common.collect.ImmutableMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.annotation.Nonnull;
@@ -27,12 +29,12 @@ import org.anarres.udev.generated.UdevLibrary;
     }
 
     @Nonnull
-    public Map<String, String> toMap() {
-        Map<String, String> out = new LinkedHashMap<String, String>();
+    public ImmutableMap<String, String> toMap() {
+        ImmutableMap.Builder<String, String> out = ImmutableMap.builder();
         while (hasNext()) {
             UdevListEntry e = next();
             out.put(e.getKey(), e.getValue());
         }
-        return out;
+        return out.build();
     }
 }

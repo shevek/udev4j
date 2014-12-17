@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Nonnull;
+import javax.annotation.concurrent.NotThreadSafe;
 import org.anarres.udev.generated.UdevLibrary;
 
 /**
@@ -21,6 +22,7 @@ import org.anarres.udev.generated.UdevLibrary;
  *
  * @author shevek
  */
+@NotThreadSafe
 public class UdevEnumeration implements Iterable<String> {
 
     private static interface Match {

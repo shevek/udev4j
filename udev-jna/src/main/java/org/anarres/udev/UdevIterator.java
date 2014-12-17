@@ -4,9 +4,8 @@
  */
 package org.anarres.udev;
 
-import java.util.ArrayList;
+import com.google.common.collect.ImmutableList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.NoSuchElementException;
 import javax.annotation.Nonnull;
 import org.anarres.udev.generated.UdevLibrary;
@@ -62,10 +61,7 @@ import org.anarres.udev.generated.UdevLibrary;
     }
 
     @Nonnull
-    public List<T> toList() {
-        List<T> out = new ArrayList<T>();
-        while (hasNext())
-            out.add(next());
-        return out;
+    public ImmutableList<T> toList() {
+        return ImmutableList.copyOf(this);
     }
 }
