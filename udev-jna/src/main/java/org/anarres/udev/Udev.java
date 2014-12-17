@@ -1,5 +1,6 @@
 package org.anarres.udev;
 
+import com.google.common.base.Preconditions;
 import java.io.Closeable;
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.NotThreadSafe;
@@ -17,11 +18,11 @@ import org.anarres.udev.generated.UdevLibrary;
 public class Udev implements Closeable {
 
     private final UdevLibrary library;
-    private UdevLibrary.udev udev;
+    private UdevLibrary.udev handle;
 
     public Udev(@Nonnull UdevLibrary library) {
         this.library = library;
-        this.udev = library.udev_new();
+        this.handle = library.udev_new();
     }
 
     /** You want this constructor. */
@@ -44,7 +45,7 @@ public class Udev implements Closeable {
      */
     @Nonnull
     public UdevLibrary.udev getHandle() {
-        return udev;
+        return Preconditions.checkNotNull(handle, "Udev object was closed.");
     }
 
     /**
@@ -84,7 +85,9 @@ public class Udev implements Closeable {
      */
     @Override
     public void close() {
-        library.udev_unref(udev);
-        udev = null;
+        UdevLibrary.udev h = handle;
+        if (h != null)
+            library.udev_unref(h);
+        handle = null;
     }
 }
