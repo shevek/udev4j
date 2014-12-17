@@ -14,7 +14,7 @@ import org.anarres.udev.generated.UdevLibrary;
  *
  * @author shevek
  */
-/* pp */ class UdevEnumeration implements Iterable<String> {
+public class UdevEnumeration implements Iterable<String> {
 
     private static interface Match {
 
@@ -28,12 +28,12 @@ import org.anarres.udev.generated.UdevLibrary;
     }
 
     @Nonnull
-    public UdevLibrary getLibrary() {
+    /* pp */ UdevLibrary getLibrary() {
         return getUdev().getLibrary();
     }
 
     @Nonnull
-    public Udev getUdev() {
+    /* pp */ Udev getUdev() {
         return udev;
     }
 

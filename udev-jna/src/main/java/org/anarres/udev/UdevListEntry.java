@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
  *
  * @author shevek
  */
-public class UdevListEntry extends AbstractMap.SimpleEntry<String, String> {
+/* pp */ class UdevListEntry extends AbstractMap.SimpleEntry<String, String> {
 
     /* pp */ UdevListEntry(@Nonnull String key, @Nonnull String value) {
         super(key, value);
