@@ -58,6 +58,7 @@ public enum UdevSubsystem {
     usbmon,
     vc,
     video4linux,
+    virtio,
     vtconsole,
     wmi;
 }
