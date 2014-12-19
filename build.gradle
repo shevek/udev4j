@@ -5,14 +5,14 @@ buildscript {
     apply from: file('gradle/buildscript.gradle'), to: buildscript 
 
 	repositories {
-		// maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+		maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
 		jcenter()
 		// mavenLocal()
 	}
 
 	dependencies {
 		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.0"
-		classpath "com.nativelibs4java:jnaerator:0.11"
+		classpath "com.nativelibs4java:jnaerator:0.12-SNAPSHOT"
 	}
 }
 
@@ -24,9 +24,7 @@ apply from: file('gradle/license.gradle')
 
 subprojects {
 	group = "org.anarres.udev"
-}
 
-project(':udev-jna') {
 	dependencies {
 		compile 'com.nativelibs4java:jnaerator-runtime:0.11'
 		// If JNA
@@ -38,13 +36,44 @@ project(':udev-jna') {
 
 		testCompile "org.slf4j:slf4j-api:1.7.7"
 	}
+}
 
+project(':udev') {
 	apply plugin: 'org.anarres.jnaerator'
 
 	jnaerator {
 		libraryName 'udev'
 		packageName 'org.anarres.udev.generated'
-		headerFiles "/usr/include/libudev.h"
-		// runtimeMode "BridJ"
+		headerFiles '/usr/include/libudev.h'
+	}
+}
+
+project(':parted') {
+	apply plugin: 'org.anarres.jnaerator'
+
+	jnaerator {
+		libraryName 'parted'
+		packageName 'org.anarres.device.parted.generated'
+		headerFiles '/usr/include/parted/parted.h'
+	}
+}
+
+project(':devmapper') {
+	apply plugin: 'org.anarres.jnaerator'
+
+	jnaerator {
+		libraryName 'devmapper'
+		packageName 'org.anarres.device.devmapper.generated'
+		headerFiles '/usr/include/libdevmapper.h'
+	}
+}
+
+project(':ext2fs') {
+	apply plugin: 'org.anarres.jnaerator'
+
+	jnaerator {
+		libraryName 'ext2fs'
+		packageName 'org.anarres.device.ext2fs.generated'
+		headerFiles '/usr/include/ext2fs/ext2fs.h'
 	}
 }
