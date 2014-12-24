@@ -1,2 +1,2 @@
 rootProject.name='udev4j'
-include 'udev', 'parted', 'devmapper', 'ext2fs'
+include 'udev', 'parted', 'devmapper', 'ext2fs', 'augeas'
