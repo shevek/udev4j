@@ -57,8 +57,8 @@ public class UdevDevice {
 
         this.initialized = library.udev_device_get_is_initialized(device) != 0;
 
-        this.sequenceNumber = library.udev_device_get_seqnum(device).longValue();
-        this.usecSinceInitialized = library.udev_device_get_usec_since_initialized(device).longValue();
+        this.sequenceNumber = library.udev_device_get_seqnum(device);
+        this.usecSinceInitialized = library.udev_device_get_usec_since_initialized(device);
 
         this.devlinks = new UdevValueIterator(library, library.udev_device_get_devlinks_list_entry(device)).toList();
         this.properties = new UdevEntryIterator(library, library.udev_device_get_properties_list_entry(device)).toMap();
