@@ -45,6 +45,7 @@ project(':udev') {
 		libraryName 'udev'
 		packageName 'org.anarres.udev.generated'
 		headerFiles '/usr/include/libudev.h'
+		// https://github.com/ochafik/nativelibs4java/issues/551
 		define "property=name"
 	}
 }
@@ -78,6 +79,18 @@ project(':devmapper') {
 	}
 }
 
+project(':lvm2') {
+	apply plugin: 'org.anarres.jnaerator'
+
+	jnaerator {
+		libraryName 'lvm2app'
+		packageName 'org.anarres.device.lvm2.generated'
+		headerFiles '/usr/include/lvm2app.h'
+		// https://github.com/ochafik/nativelibs4java/issues/546
+		// define "_STDIO_H=1", "_UNISTD_H=1", "_IO_STDIO_H=1"
+	}
+}
+
 project(':ext2fs') {
 	apply plugin: 'org.anarres.jnaerator'
 
@@ -103,6 +116,7 @@ project(':augeas') {
 		headerFiles '/usr/include/augeas.h'
 		// https://github.com/ochafik/nativelibs4java/issues/546
 		// define "_STDIO_H=1"
+		// 'struct augeas *' is being returned as a PointerByReference.
 		// args "-emptyStructsAsForwardDecls"
 	}
 }
