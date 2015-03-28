@@ -11,8 +11,8 @@ buildscript {
 	}
 
 	dependencies {
-		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.0"
-		classpath "com.nativelibs4java:jnaerator:0.11"
+		classpath "org.anarres.gradle:gradle-jnaerator-plugin:1.0.1"
+		classpath "com.nativelibs4java:jnaerator:0.12"
 	}
 }
 
