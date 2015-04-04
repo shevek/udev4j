@@ -46,5 +46,7 @@ project(':udev-jna') {
 		packageName 'org.anarres.udev.generated'
 		headerFiles "/usr/include/libudev.h"
 		// runtimeMode "BridJ"
+		// https://github.com/ochafik/nativelibs4java/issues/551
+		define "property=name"
 	}
 }
